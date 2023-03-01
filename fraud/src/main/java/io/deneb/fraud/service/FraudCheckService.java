@@ -1,4 +1,4 @@
-package io.deneb.fraud;
+package io.deneb.fraud.service;
 
 import io.deneb.fraud.model.FraudCheckHistory;
 import io.deneb.fraud.repository.FraudCheckHistoryRepository;
