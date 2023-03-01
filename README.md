@@ -6,9 +6,9 @@
 * JDK 17
 * Spring Boot 2.7.5
 * Maven
-* MariaDB
+* PostgreSQL
 
-#### [DB설정]
+#### [실행]
 
 #### [이력]
-* 23.03.01 - 최초 커밋
+* 23.03.01 - 최초 커밋 / DB 설정
