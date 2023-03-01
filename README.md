@@ -7,8 +7,9 @@
 * Spring Boot 2.7.5
 * Maven
 * PostgreSQL
+* Docker
 
 #### [실행]
 
 #### [이력]
-* 23.03.01 - 최초 커밋 / DB 설정
+* 23.03.01 - 최초 커밋 / DB 설정 / customer, fraud 모듈 추가
