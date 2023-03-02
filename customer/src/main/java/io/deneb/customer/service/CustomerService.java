@@ -1,5 +1,7 @@
 package io.deneb.customer.service;
 
+import io.deneb.clients.fraud.FraudCheckResponse;
+import io.deneb.clients.fraud.FraudClient;
 import io.deneb.customer.controller.CustomerRegistration;
 import io.deneb.customer.model.Customer;
 import io.deneb.customer.repository.CustomerRepository;
@@ -9,7 +11,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public record CustomerService(
   CustomerRepository customerRepository,
-  RestTemplate restTemplate) {
+  RestTemplate restTemplate,
+  FraudClient fraudClient) {
 
   public void register(CustomerRegistration registration) {
     Customer customer = Customer.builder()
@@ -20,11 +23,10 @@ public record CustomerService(
 
     customerRepository.saveAndFlush(customer);
     // TODO: check if fraudster
-    FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-      "http://FRAUD/api/v1/fraud-check/{customerId}",
-      FraudCheckResponse.class,
-      customer.getId()
-    );
+
+    // To Client
+    FraudCheckResponse fraudCheckResponse =
+      fraudClient.isFraudster(customer.getId());
 
     if (fraudCheckResponse.isFraudster()) {
       throw new IllegalStateException("fraudster");

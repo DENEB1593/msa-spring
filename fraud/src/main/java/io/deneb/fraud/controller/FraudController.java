@@ -1,5 +1,6 @@
 package io.deneb.fraud.controller;
 
+import io.deneb.clients.fraud.FraudCheckResponse;
 import io.deneb.fraud.service.FraudCheckService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
