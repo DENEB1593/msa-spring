@@ -8,9 +8,10 @@
 * Maven
 * PostgreSQL
 * Docker
+* OpenFeign
 
 #### [실행]
 
 #### [이력]
 * 23.03.01 - 최초 커밋 / DB 설정 / customer, fraud 모듈 추가
-* 23.03.02 - eureka server
+* 23.03.02 - eureka server, open feign
