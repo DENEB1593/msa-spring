@@ -25,12 +25,12 @@ public record CustomerService(
       .build();
 
     customerRepository.saveAndFlush(customer);
-    // TODO: check if fraudster
 
     // To Client
     FraudCheckResponse fraudCheckResponse =
       fraudClient.isFraudster(customer.getId());
 
+    // 사기여부 체크
     if (fraudCheckResponse.isFraudster()) {
       throw new IllegalStateException("fraudster");
     }
