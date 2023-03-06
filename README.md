@@ -17,7 +17,7 @@
 * 23.03.01 - 최초 커밋 / DB 설정 / customer, fraud 모듈 추가
 * 23.03.02 - eureka server, open feign
 * 23.03.04 - notification 추가
-* 23.03.05 - Zipkin 연동
+* 23.03.05 - Zipkin, ApiGateway 연동
 
 ### 참고
 * [Ngnix - Load Balance](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer)
