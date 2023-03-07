@@ -10,6 +10,7 @@
 * Docker
 * OpenFeign
 * Zipkin
+* RabbitMQ
 
 ### 실행
 
@@ -18,6 +19,7 @@
 * 23.03.02 - eureka server, open feign
 * 23.03.04 - notification 추가
 * 23.03.05 - Zipkin, ApiGateway 연동
+* 23.03.08 - RabbitMQ
 
 ### 참고
 * [Ngnix - Load Balance](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer)
