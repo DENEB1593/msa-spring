@@ -1,8 +1,8 @@
 package io.deneb.customer.service;
 
+import io.deneb.amqp.config.RabbitMQMessageProducer;
 import io.deneb.clients.fraud.FraudCheckResponse;
 import io.deneb.clients.fraud.FraudClient;
-import io.deneb.clients.notification.NotificationClient;
 import io.deneb.clients.notification.NotificationRequest;
 import io.deneb.customer.controller.CustomerRegistration;
 import io.deneb.customer.model.Customer;
@@ -15,7 +15,7 @@ public record CustomerService(
   CustomerRepository customerRepository,
   RestTemplate restTemplate,
   FraudClient fraudClient,
-  NotificationClient notificationClient) {
+  RabbitMQMessageProducer producer) {
 
   public void register(CustomerRegistration registration) {
     Customer customer = Customer.builder()
@@ -26,7 +26,7 @@ public record CustomerService(
 
     customerRepository.saveAndFlush(customer);
 
-    // To Client
+    // Fraud Client
     FraudCheckResponse fraudCheckResponse =
       fraudClient.isFraudster(customer.getId());
 
@@ -35,11 +35,17 @@ public record CustomerService(
       throw new IllegalStateException("fraudster");
     }
 
-    // todo: send notification with async
-    notificationClient.send(new NotificationRequest(
+    NotificationRequest notificationRequest = new NotificationRequest(
       customer.getId(),
       customer.getEmail(),
       String.format("Hello %s, Welcome to service", customer.getFirstName())
-    ));
+    );
+
+    // send to rabbitMQ
+    producer.publish(
+      notificationRequest,
+      "internal.exchange",
+      "internal.notification.routing-key"
+    );
   }
 }
