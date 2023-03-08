@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(
   scanBasePackages = {
-    "io.deneb.notification.config",
+    "io.deneb.notification",
     "io.deneb.amqp.config"
   }
 )
