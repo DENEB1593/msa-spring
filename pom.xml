@@ -13,9 +13,9 @@
     <module>customer</module>
     <module>fraud</module>
     <module>eureka-server</module>
-      <module>clients</module>
+    <module>clients</module>
     <module>notification</module>
-      <module>api-gw</module>
+    <module>api-gw</module>
     <module>amqp</module>
   </modules>
 
@@ -29,6 +29,7 @@
     <spring.boot.maven.plugin.version>2.7.5</spring.boot.maven.plugin.version>
     <spring.boot.dependencies.version>2.7.5</spring.boot.dependencies.version>
     <spring.cloud-version>2021.0.5</spring.cloud-version>
+    <image>deneb1593/${project.artifactId}:${project.version}</image>
   </properties>
 
   <dependencyManagement>
@@ -92,6 +93,39 @@
           <source>17</source>
           <target>17</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>3.3.1</version>
+        <configuration>
+          <from>
+            <image>eclipse-temurin:17</image>
+            <platforms>
+              <platform>
+                <architecture>arm64</architecture>
+                <os>linux</os>
+              </platform>
+              <platform>
+                <architecture>amd64</architecture>
+                <os>linux</os>
+              </platform>
+            </platforms>
+          </from>
+          <to>
+            <tags>
+              <tag>latest</tag>
+            </tags>
+          </to>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
