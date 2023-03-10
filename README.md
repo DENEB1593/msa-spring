@@ -12,10 +12,11 @@
 * Zipkin
 * RabbitMQ
 
-### 실행
+### 빌드/실행
+    mvn clean package -P build-docker-image
     docker compose pull
     docker-compose up -d
-    mvn clean package -P build-docker-image
+    docker logs [컨테이너명]
 
 ### 이력
 * 23.03.01 - 최초 커밋 / DB 설정 / customer, fraud 모듈 추가
@@ -24,6 +25,7 @@
 * 23.03.05 - Zipkin, ApiGateway 연동
 * 23.03.08 - RabbitMQ, Customer 도메인 연동, Consumer 추가
 * 23.03.09 - Jar 패키징 구성, Docker 이미지 생성
+* 23.03.10 - 모듈 별 docker 이미지 생성
 
 ### 참고
 * [Ngnix - Load Balance](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer)
