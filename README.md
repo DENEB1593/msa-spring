@@ -27,5 +27,5 @@
 
 ### 참고
 * [Ngnix - Load Balance](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer)
-* spring-cloud-gateway (M1 사용 시) netty-resolver-dns-native-macos 설정 추가필요 [참고사이트](https://github.com/netty/netty/issues/11020)
+* spring-cloud-gateway (M1 사용 시) netty-resolver-dns-native-macos 설정 필요 [참고사이트](https://github.com/netty/netty/issues/11020)
 * [spring-boot-maven-plugin](https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/)
