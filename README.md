@@ -13,9 +13,9 @@
 * RabbitMQ
 
 ### 실행
+    docker compose pull
     docker-compose up -d
     mvn clean package -P build-docker-image
-
 
 ### 이력
 * 23.03.01 - 최초 커밋 / DB 설정 / customer, fraud 모듈 추가

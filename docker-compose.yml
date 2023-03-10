@@ -33,20 +33,24 @@ services:
     image: openzipkin/zipkin
     container_name: zipkin
     ports:
-      - 9411:9411
+      - "9411:9411"
+    networks:
+      - spring
 
   rabbitmq:
     image: rabbitmq:3.11-management-alpine
     container_name: rabbitmq
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - spring
 
   eureka-server:
     image: deneb1593/eureka-server:latest
     container_name: eureka-server
     ports:
-      - 8761:8761
+      - "8761:8761"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
@@ -58,7 +62,7 @@ services:
     image: deneb1593/api-gw:latest
     container_name: api-gw
     ports:
-      - 8083:8083
+      - "8083:8083"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
@@ -66,6 +70,22 @@ services:
     depends_on:
       - zipkin
       - eureka-server
+
+  customer:
+    image: deneb1593/customer:latest
+    container_name: customer
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+      - rabbitmq
 
 networks:
   postgres:
